@@ -8,7 +8,7 @@ Java로 개발되었으며 사용된 프레임워크와 라이브러리는 다�
 
 - Spring Boot
 - PostgreSql
-- Docker Selenium Standalone
+- Selenium
 
 작동 방식은 다음과 같습니다.
 
