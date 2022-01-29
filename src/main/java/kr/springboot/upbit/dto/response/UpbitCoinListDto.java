@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "english_name"
 })
 @Generated("jsonschema2pojo")
-public class UpbitCoinListModel {
+public class UpbitCoinListDto {
 
     @JsonProperty("market")
     private String market;

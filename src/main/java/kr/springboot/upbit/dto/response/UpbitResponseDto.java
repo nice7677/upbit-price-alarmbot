@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         "unit"
 })
 @Generated("jsonschema2pojo")
-public class UpbitResponseModel {
+public class UpbitResponseDto {
 
     @JsonProperty("market")
     private String market;

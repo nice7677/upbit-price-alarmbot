@@ -6,8 +6,8 @@ import kr.springboot.upbit.coinlist.UpbitCoinList;
 import kr.springboot.upbit.commons.Commons;
 import kr.springboot.upbit.model.CheckListModel;
 import kr.springboot.upbit.repository.CheckListRepository;
-import kr.springboot.upbit.dto.response.UpbitCoinListModel;
-import kr.springboot.upbit.dto.response.UpbitResponseModel;
+import kr.springboot.upbit.dto.response.UpbitCoinListDto;
+import kr.springboot.upbit.dto.response.UpbitResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.http.HttpEntity;
@@ -66,7 +66,7 @@ public class UpbitService {
                 e.printStackTrace();
             }
 
-            List<UpbitResponseModel> upbitResponseModelList = Arrays.asList(objectMapper.readValue(result, UpbitResponseModel[].class));
+            List<UpbitResponseDto> upbitResponseModelList = Arrays.asList(objectMapper.readValue(result, UpbitResponseDto[].class));
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
             LocalDateTime koreaTime = LocalDateTime.parse(upbitResponseModelList.get(1).getCandleDateTimeUtc(), formatter);
 
@@ -151,15 +151,15 @@ public class UpbitService {
     }
 
     @Async
-    void sendMsg(String name, UpbitResponseModel upbitResponseModel, LocalDateTime koreaTime) {
+    void sendMsg(String name, UpbitResponseDto upbitResponseModel, LocalDateTime koreaTime) {
 
         String marketName = name;
         if (lastSendMsgTimeChecker(name)) {
 
-            List<UpbitCoinListModel> upbitCoinListModelList = null;
+            List<UpbitCoinListDto> upbitCoinListModelList = null;
 
             try {
-                upbitCoinListModelList = Arrays.asList(objectMapper.readValue(UpbitCoinList.COIN_LIST_JSON, UpbitCoinListModel[].class));
+                upbitCoinListModelList = Arrays.asList(objectMapper.readValue(UpbitCoinList.COIN_LIST_JSON, UpbitCoinListDto[].class));
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
             }
@@ -188,7 +188,7 @@ public class UpbitService {
     }
 
     @Async
-    void telegramSendMsg(String marketName, UpbitResponseModel upbitResponseModel, String name) {
+    void telegramSendMsg(String marketName, UpbitResponseDto upbitResponseModel, String name) {
         String photoName = seleniumService.seleniumRunning(marketName);
         File file = new File(Commons.IMAGE_PATH + photoName);
         FileBody fileBody = new FileBody(file, ContentType.DEFAULT_BINARY);
