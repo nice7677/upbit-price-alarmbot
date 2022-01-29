@@ -1,11 +1,14 @@
 package kr.springboot.upbit.coinlist;
 
+
 import java.util.Arrays;
 import java.util.List;
 
 public class UpbitCoinList {
 
-    public String[] coinNameList = new String[] {
+    private UpbitCoinList() {}
+
+    public static final String[] coinNameList = new String[] {
             "KRW-HUM",
             "KRW-MLK",
             "KRW-ARK",
@@ -113,9 +116,9 @@ public class UpbitCoinList {
             "KRW-NU",
     };
 
-    public List UPBIT_COIN_LIST = Arrays.asList(coinNameList);
+    public static final List UPBIT_COIN_LIST = Arrays.asList(coinNameList);
 
-    public String coinListJson = "[\n" +
+    public static final  String COIN_LIST_JSON = "[\n" +
             "  {\n" +
             "    \"market\": \"KRW-BTC\",\n" +
             "    \"korean_name\": \"비트코인\",\n" +

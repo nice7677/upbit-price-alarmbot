@@ -5,17 +5,12 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -28,7 +23,7 @@ public class SeleniumService {
     public String seleniumRunning(String coinName) {
 
         String[] coinNameSplit = coinName.split("-");
-        Path path = Paths.get( "/usr/lib/chromium-browser/chromedriver");  // 현재 package의
+        Path path = Paths.get("/usr/local/bin/chromedriver");  // 현재 package의
 
         System.setProperty("webdriver.chrome.driver", path.toString());
 
@@ -44,12 +39,8 @@ public class SeleniumService {
         // WebDriver 객체 생성
         ChromeDriver driver = new ChromeDriver(options);
 
-        // 빈 탭 생성
-//        driver.executeScript("window.open('about:blank');");
-
         // 탭 목록 가져오기
         List<String> tabs = new ArrayList<String>(driver.getWindowHandles());
-
 
         // 첫번째 탭으로 전환
         driver.switchTo().window(tabs.get(0));
@@ -78,15 +69,14 @@ public class SeleniumService {
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         LocalDateTime now = LocalDateTime.now();
 
-        Commons commons = new Commons();
         try {
-            FileUtils.copyFile(scrFile, new File(commons.imagePath + now.toString() + ".png"));
+            FileUtils.copyFile(scrFile, new File(Commons.IMAGE_PATH + now.toString() + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-            driver.close();
-            driver.quit();
+        driver.close();
+        driver.quit();
 
         return now.toString() + ".png";
     }

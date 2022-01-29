@@ -2,17 +2,12 @@
 spring:
   profiles:
     active: dev
-  # Security configuration
-#  security:
-#    user:
-#      name: user
-#      password: user
   # Database
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://:5432/upbit
+    url: jdbc:postgresql://localhost:5432/upbit
     username: postgres
-    password: 
+    password: wlsdn123
   # JPA properties
   jpa:
     hibernate:
@@ -24,10 +19,10 @@ spring:
     generate-ddl: true
 # Logger configuration
 logging:
-#  pattern:
-#    console: "%d %-5level %logger : %msg%n"
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
   level:
-#    org.springframework: info
+    org.springframework: info
     org.hibernate: debug
 # Server configuration
 server:

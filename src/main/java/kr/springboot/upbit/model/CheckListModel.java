@@ -8,10 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 
-@Builder
-@Data
-@ToString
-@AllArgsConstructor
+@Getter
 @NoArgsConstructor
 @Entity(name = "t_check_list")
 public class CheckListModel {
@@ -41,4 +38,16 @@ public class CheckListModel {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    @Builder
+    public CheckListModel(Long idx, String coinName, String marketName, Double openingPrice, Double tradePrice, Double gapPercent, Boolean alarmStatus, LocalDateTime candleDateTimeUtc, LocalDateTime createdAt) {
+        this.idx = idx;
+        this.coinName = coinName;
+        this.marketName = marketName;
+        this.openingPrice = openingPrice;
+        this.tradePrice = tradePrice;
+        this.gapPercent = gapPercent;
+        this.alarmStatus = alarmStatus;
+        this.candleDateTimeUtc = candleDateTimeUtc;
+        this.createdAt = createdAt;
+    }
 }
