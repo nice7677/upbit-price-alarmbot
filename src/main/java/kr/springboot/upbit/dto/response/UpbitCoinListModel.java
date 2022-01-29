@@ -1,4 +1,4 @@
-package kr.springboot.upbit.response;
+package kr.springboot.upbit.dto.response;
 import java.util.HashMap;
 import java.util.Map;
 import javax.annotation.Generated;
