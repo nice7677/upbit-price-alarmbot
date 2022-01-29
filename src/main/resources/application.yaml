@@ -7,7 +7,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/upbit
     username: postgres
-    password: wlsdn123
+    password: 비밀번호다
   # JPA properties
   jpa:
     hibernate:
